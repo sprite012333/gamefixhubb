@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameFixHub 遊戲問題修復平台</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft JhengHei",Arial,sans-serif}
+    body{background:linear-gradient(180deg,#07111f 0%,#0d1b2f 100%);color:white;line-height:1.6}
+    .container{width:90%;max-width:1100px;margin:0 auto}
+    header{background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.1);position:sticky;top:0;backdrop-filter:blur(8px)}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+    .logo{font-size:28px;font-weight:bold;color:#5cc9ff}
+    .menu a{color:white;text-decoration:none;margin-left:20px;font-size:15px}
+    .hero{text-align:center;padding:80px 20px 50px}
+    .hero h1{font-size:52px;margin-bottom:15px}
+    .hero h1 span{color:#69d3ff}
+    .hero p{max-width:700px;margin:0 auto 30px;color:#c8d6e5;font-size:18px}
+    .search-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:20px;max-width:800px;margin:0 auto}
+    textarea{width:100%;min-height:120px;border:none;border-radius:12px;padding:15px;font-size:16px;background:rgba(0,0,0,.35);color:white;resize:vertical}
+    button{background:#5cc9ff;color:#00111c;border:none;padding:14px 28px;border-radius:12px;cursor:pointer;font-size:16px;font-weight:bold;margin-top:15px}
+    button:hover{background:#7fd7ff}
+    section{padding:40px 0}
+    h2{font-size:32px;margin-bottom:20px}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;box-shadow:0 8px 25px rgba(0,0,0,.2)}
+    .card h3{color:#74d7ff;margin-bottom:10px;font-size:22px}
+    .card p,.card li{color:#d9e4ef;font-size:15px}
+    .card ul{padding-left:18px;margin-top:10px}
+    .result-box{background:rgba(92,201,255,.08);border:1px solid rgba(92,201,255,.25);border-radius:18px;padding:22px;margin-top:20px;display:none}
+    .price{font-size:30px;font-weight:bold;color:#74d7ff;margin:10px 0}
+    footer{text-align:center;padding:30px 0 40px;color:#aab8c6;font-size:14px}
+    @media (max-width:768px){.hero h1{font-size:36px}.menu{display:none}.hero p{font-size:16px}}
+  </style>
+</head>
+<body>
+  <header><div class="container"><nav><div class="logo">GameFixHub</div><div class="menu"><a href="#features">功能</a><a href="#problems">熱門問題</a><a href="#pricing">收費方案</a></div></nav></div></header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>解決你的<span>遊戲問題</span></h1>
+        <p>輸入你遇到的狀況，平台會幫你整理可能原因、免費解法，並提供進階修復服務。</p>
+        <div class="search-box">
+          <textarea id="problemInput" placeholder="例如：OBS 有聲音但 Discord 聽不到，或 Terraria 模組一直閃退"></textarea>
+          <button onclick="analyzeProblem()">開始分析</button>
+          <div class="result-box" id="resultBox">
+            <h3>分析結果</h3>
+            <p id="resultText"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="features"><div class="container"><h2>網站功能</h2><div class="card-grid">
+      <div class="card"><h3>問題分析</h3><p>玩家輸入問題後，系統會顯示常見原因與基礎解法。</p></div>
+      <div class="card"><h3>進階修復</h3><p>提供更完整的設定建議、一鍵修復、或付費解法。</p></div>
+      <div class="card"><h3>人工協助</h3><p>當玩家自己修不好時，可以導向真人處理服務。</p></div>
+    </div></div></section>
+    <section id="problems"><div class="container"><h2>熱門問題</h2><div class="card-grid">
+      <div class="card"><h3>OBS 沒聲音</h3><p>常見於音訊輸出設定錯誤。</p><ul><li>檢查監聽裝置</li><li>確認 Discord 輸入來源</li><li>重新指定輸出設備</li></ul></div>
+      <div class="card"><h3>Terraria 模組閃退</h3><p>可能是模組衝突或記憶體不足。</p><ul><li>確認模組版本</li><li>降低同時啟用模組數</li><li>重新排序模組</li></ul></div>
+      <div class="card"><h3>遊戲 FPS 不穩</h3><p>通常與背景程式、驅動或畫質設定有關。</p><ul><li>更新顯卡驅動</li><li>關閉背景錄影</li><li>套用建議畫質</li></ul></div>
+    </div></div></section>
+    <section id="pricing"><div class="container"><h2>收費方案</h2><div class="card-grid">
+      <div class="card"><h3>免費版</h3><div class="price">NT$0</div><p>查看常見問題、閱讀基礎解法。</p></div>
+      <div class="card"><h3>進階版</h3><div class="price">NT$99 / 月</div><p>可使用進階修復功能與個人化建議。</p></div>
+      <div class="card"><h3>人工協助</h3><div class="price">NT$299 起</div><p>提供 OBS、Discord、模組排錯等真人服務。</p></div>
+    </div></div></section>
+  </main>
+  <footer><div class="container">GameFixHub © 2026｜遊戲問題修復平台範例頁面</div></footer>
+  <script>
+    function analyzeProblem(){
+      const input=document.getElementById('problemInput').value.toLowerCase();
+      const resultBox=document.getElementById('resultBox');
+      const resultText=document.getElementById('resultText');
+      let result='系統判斷：這可能是一般設定問題。建議先檢查裝置設定、版本是否一致，並重啟程式後再測試。';
+      if(input.includes('obs')||input.includes('聲音')||input.includes('discord')){
+        result='系統判斷：這可能是音訊裝置或輸入來源設定錯誤。建議先檢查 Discord 的輸入裝置、OBS 的音訊監聽設定，以及 Windows 的預設輸出裝置。';
+      }else if(input.includes('terraria')||input.includes('模組')||input.includes('閃退')){
+        result='系統判斷：這可能是模組衝突、版本不一致，或記憶體不足。建議先停用部分模組、確認 tModLoader 版本，並重新排列模組載入順序。';
+      }else if(input.includes('fps')||input.includes('卡頓')||input.includes('lag')){
+        result='系統判斷：這可能與背景程式、顯示卡驅動或畫質設定有關。建議先關閉背景程式、更新驅動，並降低部分遊戲畫質。';
+      }
+      resultText.textContent=result;
+      resultBox.style.display='block';
+    }
+  </script>
+</body>
+</html>
